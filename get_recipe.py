@@ -38,7 +38,7 @@ def fetch_recipes(ingredients): # レシピの取得
     
     return recipes
 
-ingredients = ['卵', '牛乳'] # 材料
+ingredients = ['卵', '牛乳'] # ここに材料を記述
 recipes = fetch_recipes(ingredients)
 
 # 取得したものをHTMLファイルに出力
