@@ -2,6 +2,18 @@
 
 ## レシピのスクレイピング
 
+必要なライブラリのインストール
+
+```
+pip install -r requirements.txt
+```
+
+API キーを入れる config.py を作成
+
+```
+OPENAI_API_KEY = '{キー}'
+```
+
 get_recipe.py の ingredients に材料を入れて実行
 
 ```
