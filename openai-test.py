@@ -1,13 +1,27 @@
 import config
 from openai import OpenAI
+import base64
 
 client = OpenAI(api_key=config.OPENAI_API_KEY)
 
-# call new API
-response = client.chat.completions.create(model="gpt-3.5-turbo",
-messages=[
-    {"role": "system", "content": "You are a helpful assistant."},
-    {"role": "user", "content": "Say this is a test"}
-])
+def encode_image(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode("utf-8")
+    
+base64_image = encode_image("image/image1.jpeg")
 
-print(response.choices[0].message.content.strip())
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": [
+            {"type": "text", "text": "Please list the specific ingredients contained in this image in Japanese only and in short words.Output should be line by line."},
+            {"type": "image_url", "image_url": {
+                "url": f"data:image/png;base64,{base64_image}"}
+            }
+        ]}
+    ],
+    temperature=0.0,
+)
+
+print(response.choices[0].message.content)
