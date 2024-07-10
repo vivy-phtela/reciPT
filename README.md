@@ -1,24 +1,31 @@
 # 食材の画像からレシピを自動でおすすめするアプリ
 
-## レシピのスクレイピング
+## ローカル環境での実行方法
 
-必要なライブラリのインストール
+1.必要なライブラリのインストール
 
 ```
 pip install -r requirements.txt
 ```
 
-API キーを入れる config.py を作成
+2.API キーを入れる config.py を作成
 
 ```
-OPENAI_API_KEY = '{キー}'
+OPENAI_API_KEY = '{APIキー}'
 ```
 
-
+3.実行
 
 ```
-python3 openai-test.py
+python3 app.py
 ```
 
-test フォルダに html ファイルが生成される．
-Live server で html ファイルを開いて確認する．
+## Docker 環境での実行方法
+
+1.Docker アプリを起動（アプリがない場合はインストール）
+
+2.Docker の立ち上げ
+
+```
+docker-compose up --build
+```
