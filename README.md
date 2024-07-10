@@ -1,12 +1,31 @@
 # 食材の画像からレシピを自動でおすすめするアプリ
 
-## レシピのスクレイピング
+## ローカル環境での実行方法
 
-get_recipe.py の ingredients に材料を入れて実行
+1.必要なライブラリのインストール
 
 ```
-python3 get_recipe.py
+pip install -r requirements.txt
 ```
 
-test フォルダに html ファイルが生成される．
-Live server で html ファイルを開いて確認する．
+2.API キーを入れる config.py を作成
+
+```
+OPENAI_API_KEY = '{APIキー}'
+```
+
+3.実行
+
+```
+python3 app.py
+```
+
+## Docker 環境での実行方法
+
+1.Docker アプリを起動（アプリがない場合はインストール）
+
+2.Docker の立ち上げ
+
+```
+docker-compose up --build
+```
