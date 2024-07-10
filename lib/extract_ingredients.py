@@ -4,11 +4,15 @@ import base64
 
 client = OpenAI(api_key=config.OPENAI_API_KEY)
 
-def encode_image(image_path):
+def encode_image(image_path): # 画像をbase64にエンコード
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode("utf-8")
+    
+def parse_ingredients(ingredients_text): # 出力結果の整形
+        ingredients_list = [line.strip('- ').strip() for line in ingredients_text.split('\n') if line.strip()]
+        return ingredients_list
 
-def get_ingredients_list(image_path):
+def get_ingredients_list(image_path): # ChatGPTのAPIを使用して画像から材料リストを抽出
     base64_image = encode_image(image_path)
 
     response = client.chat.completions.create(
@@ -26,10 +30,5 @@ def get_ingredients_list(image_path):
     )
 
     res = response.choices[0].message.content
-
-    def parse_ingredients(ingredients_text):
-        ingredients_list = [line.strip('- ').strip() for line in ingredients_text.split('\n') if line.strip()]
-        return ingredients_list
-
     ingredients_list = parse_ingredients(res)
     return ingredients_list

@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
-import extract_ingredients
-import get_recipes
+import lib.extract_ingredients as extract_ingredients
+import lib.get_recipes as get_recipes
 
 app = Flask(__name__)
 
