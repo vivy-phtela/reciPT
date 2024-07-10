@@ -32,6 +32,8 @@ def show_recipes():
         image_path = request.args.get('image_path')
 
         # ingredients_list = extract_ingredients.get_ingredients_list(image_path) # 画像から材料リストを抽出
+        if os.path.exists(image_path):
+            os.remove(image_path)
         # print(ingredients_list)
         ingredients_list = ['トマト', '白菜'] # テスト用
 
