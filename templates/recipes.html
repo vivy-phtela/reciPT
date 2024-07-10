@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>レシピ一覧</title>
+  </head>
+  <body>
+    <ul>
+      {% for recipe in recipes %}
+      <li>
+        <a href="{{ recipe.url }}" target="_blank">{{ recipe.title }}</a><br />
+        <img src="{{ recipe.image }}" alt="{{ recipe.title }}" />
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
