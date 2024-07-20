@@ -1,8 +1,8 @@
-import config
+import config_key
 from openai import OpenAI
 import base64
 
-client = OpenAI(api_key=config.OPENAI_API_KEY)
+client = OpenAI(api_key=config_key.OPENAI_API_KEY)
 
 def encode_image(image_path): # 画像をbase64にエンコード
     with open(image_path, "rb") as image_file:
