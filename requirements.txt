@@ -4,4 +4,3 @@ jinja2
 openai
 flask
 flask-cors
-gunicorn
