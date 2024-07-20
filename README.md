@@ -8,10 +8,10 @@
 pip install -r requirements.txt
 ```
 
-2.API キーを入れる config.py を作成
+2.API キーを入れる config_key.py を作成
 
 ```
-OPENAI_API_KEY = '{APIキー}'
+OPENAI_API_KEY = 'APIキー'
 ```
 
 3.実行
