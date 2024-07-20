@@ -3,12 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <title>画像アップロード</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
   </head>
   <body>
-    <h1>画像をアップロードしてください</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-      <input type="file" name="file" />
-      <input type="submit" />
-    </form>
+    <header>
+      <h1 class="header-title">reciPT</h1>
+      <a href="{{ url_for('index') }}">ホームへ</a>
+      </nav>
+    </header>
+    <div class="container">
+      <h2 class="sub-title">食材の画像をアップロードしてください</h2>
+      <form
+        action="{{ url_for('upload_file') }}"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input type="file" name="file" class="file-input" />
+        <input type="submit" value="アップロード" class="submit-button" />
+      </form>
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="flash-messages">
+        {% for message in messages %}
+        <p class="error-message">{{ message }}</p>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+    </div>
   </body>
 </html>
