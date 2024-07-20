@@ -3,15 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <title>レシピ一覧</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
   </head>
   <body>
-    <ul>
-      {% for recipe in recipes %}
-      <li>
-        <a href="{{ recipe.url }}" target="_blank">{{ recipe.title }}</a><br />
-        <img src="{{ recipe.image }}" alt="{{ recipe.title }}" />
-      </li>
-      {% endfor %}
-    </ul>
+    <header>
+      <h1 class="header-title">reciPT</h1>
+      <a href="{{ url_for('index') }}">ホームへ</a>
+      </nav>
+    </header>
+    <div class="container">
+      <h2 class="sub-title">レシピ一覧</h2>
+      <div class="ingredients-list">
+        <p class="ingredients-list-title">材料：</p>
+        {% for ingredient in ingredients %}
+        <p class="ingredient">{{ ingredient }}</p>
+        {% endfor %}
+      </div>
+      <ul class="recipe-list">
+        {% for recipe in recipes %}
+        <li class="recipe-item">
+          <a href="{{ recipe.url }}" target="_blank">{{ recipe.title }}</a
+          ><br />
+          <img
+            src="{{ recipe.image }}"
+            alt="{{ recipe.title }}"
+            class="recipe-image"
+          />
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
   </body>
 </html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>材料の編集</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <h1 class="header-title">reciPT</h1>
+      <a href="{{ url_for('index') }}">ホームへ</a>
+      </nav>
+    </header>
+    <div class="container">
+      <h2 class="sub-title">材料の編集</h2>
+
+      <form action="{{ url_for('show_recipes') }}" method="post">
+        <input type="hidden" name="image_path" value="{{ image_path }}" />
+        <ul id="ingredients-list">
+          {% for ingredient in ingredients %}
+          <li>
+            <input type="text" name="ingredients" value="{{ ingredient }}" class="ingredient-name"/>
+            <button type="button" onclick="removeIngredient(this)" class="del-btn">削除</button>
+          </li>
+          {% endfor %}
+        </ul>
+        <button type="button" onclick="addIngredient()" class="add-btn">材料を追加</button>
+        <input type="submit" value="レシピを取得" class="edit-btn"/>
+      </form>
+    </div>
+
+    <script>
+      function addIngredient() {
+        var ul = document.getElementById("ingredients-list");
+        var li = document.createElement("li");
+        li.innerHTML =
+          '<input type="text" name="ingredients" required class="add-ingredient-name"><button type="button" onclick="removeIngredient(this)" class="del-btn">削除</button>';
+        ul.appendChild(li);
+      }
+
+      function removeIngredient(button) {
+        var li = button.parentNode;
+        li.parentNode.removeChild(li);
+      }
+    </script>
+  </body>
+</html>
