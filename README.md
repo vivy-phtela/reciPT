@@ -1,31 +1,30 @@
 # 食材の画像からレシピを自動でおすすめするアプリ
 
-## ローカル環境での実行方法
 
-1.必要なライブラリのインストール
+## 1. 必要なライブラリのインストール
 
 ```
 pip install -r requirements.txt
 ```
 
-2.API キーを入れる config_key.py を作成
+## 2. OpenAIのAPIとSupabaseのキーを入れる.envファイルを作成
 
 ```
-OPENAI_API_KEY = 'APIキー'
+OPENAI_API_KEY = "~"
+SUPABASE_URL = "~"
+SUPABASE_KEY = "~"
 ```
 
-3.実行
+## 3. 実行
 
+### ローカル環境での実行方法
+ターミナルで以下のコマンドを実行
 ```
 python3 app.py
 ```
 
-## Docker 環境での実行方法
-
-1.Docker アプリを起動（アプリがない場合はインストール）
-
-2.Docker の立ち上げ
-
+### Docker 環境での実行方法
+Dockerデスクトップアプリを起動（アプリがない場合はインストール）して，ターミナルで以下のコマンドを実行
 ```
 docker-compose up --build
 ```
