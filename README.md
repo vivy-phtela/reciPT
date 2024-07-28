@@ -20,6 +20,9 @@ ChatGPTで画像認識して食材を出力
 
 <br>
 
+## 使用技術
+Flask，Docker，Supabase，OpenAI API
+
 <br>
 
 ## 実行方法
