@@ -1,20 +1,23 @@
 import config_key
 from openai import OpenAI
 import base64
+import requests
 
+# OpenAI APIキーの設定
 client = OpenAI(api_key=config_key.OPENAI_API_KEY)
 
-def encode_image(image_path): # 画像をbase64にエンコード
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode("utf-8")
+def encode_image_from_url(image_url):  # 画像URLから画像をダウンロードし、Base64にエンコード
+    response = requests.get(image_url)
+    image_data = response.content
+    return base64.b64encode(image_data).decode("utf-8")
+
+def parse_ingredients(ingredients_text):  # 出力結果の整形
+    ingredients_list = [line.strip('- ').strip() for line in ingredients_text.split('\n') if line.strip()]
+    return ingredients_list
+
+def get_ingredients_list(image_url):  # ChatGPTのAPIを使用して画像から材料リストを抽出
+    base64_image = encode_image_from_url(image_url)
     
-def parse_ingredients(ingredients_text): # 出力結果の整形
-        ingredients_list = [line.strip('- ').strip() for line in ingredients_text.split('\n') if line.strip()]
-        return ingredients_list
-
-def get_ingredients_list(image_path): # ChatGPTのAPIを使用して画像から材料リストを抽出
-    base64_image = encode_image(image_path)
-
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[
