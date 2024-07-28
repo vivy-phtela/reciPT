@@ -57,16 +57,16 @@ def upload_file():
             "content-type": mime_type
         })
 
-    # レスポンスのエラーチェック
-    if response.status_code != 200:
-        flash('File upload failed: ' + response.json().get('message', 'Unknown error'))
-        return redirect(url_for('index'))
-
     # アップロードされたファイルのURLを取得
     file_url = f"{url}/storage/v1/object/public/recipt-image/{unique_filename}"
 
+    print("ファイル名",unique_filename)
+
     # ファイルのURLを使用してget_ingredients_list関数を呼び出す
     ingredients_list = get_ingredients_list(file_url)
+
+    # DBからファイルを削除
+    supabase.storage.from_("recipt-image").remove([unique_filename])
         
     return render_template('edit_ingredients.html', ingredients=ingredients_list)
 
@@ -85,5 +85,5 @@ def show_recipes():
         return str(e)
 
 if __name__ == '__main__':
-    # app.run(host='0.0.0.0', port=5000, debug=True)
-    serve(app, host='0.0.0.0', port=5000, threads=10)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+    # serve(app, host='0.0.0.0', port=5000, threads=10)
