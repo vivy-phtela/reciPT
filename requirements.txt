@@ -1,6 +1,7 @@
 requests
 beautifulsoup4
-jinja2
 openai
 flask
 flask-cors
+supabase
+werkzeug
