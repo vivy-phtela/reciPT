@@ -11,10 +11,15 @@ from dotenv import load_dotenv
 app = Flask(__name__)
 app.secret_key = 'secret_key'
 
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+
 load_dotenv()
 url = os.environ.get('SUPABASE_URL')
 key = os.environ.get('SUPABASE_KEY')
 supabase: Client = create_client(url, key)
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def index():
@@ -23,6 +28,17 @@ def index():
 @app.route('/upload_file', methods=['POST'])
 def upload_file():
     file = request.files['file']
+
+    # ファイルが空かどうかチェック
+    if file.filename == '':
+        flash('ファイルが選択されていません')
+        return redirect(url_for('index'))
+
+    # 許可された拡張子かどうかチェック
+    if not allowed_file(file.filename):
+        flash('許可されていないファイル形式です')
+        return redirect(url_for('index'))
+    
     original_filename = secure_filename(file.filename)
     
     # ファイル名にUUIDを追加してユニークにする
