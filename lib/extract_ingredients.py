@@ -2,9 +2,13 @@ import config_key
 from openai import OpenAI
 import base64
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # OpenAI APIキーの設定
-client = OpenAI(api_key=config_key.OPENAI_API_KEY)
+client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
 
 def encode_image_from_url(image_url):  # 画像URLから画像をダウンロードし、Base64にエンコード
     response = requests.get(image_url)

@@ -3,16 +3,17 @@ from lib.extract_ingredients import get_ingredients_list
 from lib.get_recipes import fetch_recipes
 from werkzeug.utils import secure_filename
 from supabase import create_client, Client
-import config_key
 import os
 import mimetypes
 import uuid
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
 
-url = config_key.SUPABASE_URL
-key = config_key.SUPABASE_KEY
+load_dotenv()
+url = os.environ.get('SUPABASE_URL')
+key = os.environ.get('SUPABASE_KEY')
 supabase: Client = create_client(url, key)
 
 @app.route('/')
