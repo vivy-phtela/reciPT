@@ -10,12 +10,17 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
-      <h1 class="header-title">reciPT</h1>
+      <h1 class="header-title carter-one-regular">reciPT</h1>
       <a href="{{ url_for('index') }}">ホームへ</a>
-      </nav>
     </header>
     <div class="container">
       <h2 class="sub-title">材料の編集</h2>
@@ -24,13 +29,26 @@
         <ul id="ingredients-list">
           {% for ingredient in ingredients %}
           <li>
-            <input type="text" name="ingredients" value="{{ ingredient }}" class="ingredient-name"/>
-            <button type="button" onclick="removeIngredient(this)" class="del-btn">削除</button>
+            <input
+              type="text"
+              name="ingredients"
+              value="{{ ingredient }}"
+              class="ingredient-name"
+            />
+            <button
+              type="button"
+              onclick="removeIngredient(this)"
+              class="del-btn"
+            >
+              削除
+            </button>
           </li>
           {% endfor %}
         </ul>
-        <button type="button" onclick="addIngredient()" class="add-btn">材料を追加</button>
-        <input type="submit" value="レシピを取得" class="edit-btn"/>
+        <button type="button" onclick="addIngredient()" class="add-btn">
+          材料を追加
+        </button>
+        <input type="submit" value="レシピを取得" class="edit-btn" />
       </form>
     </div>
 

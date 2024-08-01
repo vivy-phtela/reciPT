@@ -6,6 +6,12 @@ body {
   padding: 0;
 }
 
+.carter-one-regular {
+  font-family: "Carter One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .container {
   max-width: 600px;
   margin: 50px auto;
@@ -76,7 +82,7 @@ form {
 }
 
 .ingredient {
-  background-color: #49f9fc;
+  background-color: #70a5d7;
   padding: 5px 10px;
   border-radius: 4px;
 }
@@ -94,7 +100,8 @@ header {
 
 .header-title {
   font-weight: bold;
-  font-size: 30px;
+  font-size: 50px;
+  margin: 10px 0;
 }
 
 .del-btn {
@@ -181,7 +188,8 @@ header {
   }
 
   .header-title {
-    font-size: 24px;
+    font-size: 30px;
+    margin: 10px 0;
   }
 
   .submit-button,
@@ -194,11 +202,18 @@ header {
 
   .ingredients-list {
     flex-direction: column;
-    gap: 5px;
+    gap: 2px;
   }
 
   .ingredient {
     width: 100%;
     text-align: center;
+    margin: 3px 0;
+  }
+
+  .recipe-image {
+    max-width: 70%;
+    height: auto;
+    border-radius: 4px;
   }
 }
